@@ -1,48 +1,83 @@
-let colorPic = document.getElementById("color");
-let button = document.querySelector("button");
-let Audio = document.querySelector("audio");
-let text = document.querySelector("textarea");
-let show = document.querySelector(".wrrap");
+let sea = document.querySelector("input");
+let items = document.querySelectorAll(".tbody tr ");
+let bodyTable = document.querySelector(".tbody")
 
-// ---------------for color change in input text-------------------
-text.addEventListener("input",()=>{
-    text.style.backgroundColor = colorPic.value;
-})
-// -----main button-------------------------------
-button.addEventListener("click", ()=>{
-    button.classList.add("btnn")
-    Audio.play();
+sea.addEventListener('input',()=>{
+    let arrayConvert = Array.from(items);
 
-    if(text.value == ""){
-        alert("Enter some text");
-    }
-    else{
-        createElementt(text.value);
-    }
-    DeletButton();
+
+     let result = arrayConvert.filter((ele) =>{
+        let arr = ele.children[0].innerText;
+        if(arr.toLowerCase().startsWith(sea.value.toLowerCase())){
+           
+            return ele;
+        }
+    })
+
+    bodyTable.replaceChildren(...result);
+
 })
 
-// ----------------------create new divs--------------
-function createElementt(notes){
-    button.classList.remove("btnn");
-    let div1 = document.createElement('div');
-    show.appendChild(div1);
+// console.log(sea.value);
 
-    div1.innerHTML = `<p>${notes}</p>
-    <button class ="remove">Delete</button>`;
-    // --------------color for store text-------------
-    div1.style.color = colorPic.value;
-    div1.classList.add("diiv1")
-}
 
-// -----------for dlt the parent divs----------------
-function DeletButton(){
-    let dlt = document.querySelectorAll(".remove");
-    dlt.forEach(element => {
-        element.addEventListener("click", ()=>{
-            // console.log(e.target);
-            element.parentElement.remove();
-        }) 
-    });
-   
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// let searchBar = document.querySelector('input');
+// let table = document.querySelector('table');
+// let rows = [...document.querySelectorAll('tbody tr')];
+// let tbody = document.querySelector('tbody');
+
+// function filterData(){
+//     let searchText= searchBar.value.toLowerCase();
+//     let filterList = rows.filter((i) => {
+//         return i.firstElementChild.innerText.toLowerCase().includes(searchText);
+//     });
+//     while(tbody.firstChild){
+//         tbody.removeChild(tbody.firstChild);
+//     }
+//     for(let i=0; i<filterList.length; i++){
+//         tbody.appendChild(filterList[i]);
+//     }
+// }
+
+// searchBar.addEventListener('keyup', filterData);
